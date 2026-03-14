@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script displays all active IPv4 addresses on the host machine
+
+# Use ip addr to show network interfaces
+# grep "inet " filters only IPv4 lines (skipping IPv6 'inet6')
+# awk extracts the second field (the IP and mask)
+# cut removes the CIDR mask (e.g., /24) to leave only the IP
+ip addr | grep "inet " | awk '{print $2}' | cut -d'/' -f1
